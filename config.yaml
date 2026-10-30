@@ -1,0 +1,48 @@
+# notes2video configuration. ${VAR} values are read from the environment / .env.
+
+llm:
+  base_url: ${LLM_BASE_URL}
+  model: ${LLM_MODEL_NAME}
+  api_key_env: LLM_API_KEY          # optional; "none" is sent if unset
+  json_mode: json_schema            # json_schema | json_object | none
+  disable_thinking: true            # sends chat_template_kwargs.enable_thinking=false (Qwen3)
+  temperature_structure: 0.25
+  temperature_narration: 0.55
+  max_retries: 3
+  timeout_s: 180
+
+tts:
+  provider: kokoro                  # kokoro | elevenlabs
+  kokoro:
+    voice: am_michael
+    speed: 1.0
+    lang_code: a
+  elevenlabs:
+    voice_id: ""
+    model_id: eleven_multilingual_v2
+    api_key_env: ELEVENLABS_API_KEY
+
+align:
+  provider: native                  # native (use TTS timestamps) | faster_whisper
+  whisper_model: base.en
+
+sync:
+  lead_ms: 80                       # highlights start this much before the anchor word
+  pad_start_ms: 500                 # silence before narration in each scene
+  pad_end_ms: 900                   # silence after narration in each scene
+  max_hold_ms: 10000                # a highlight fades after this long unless something replaces it (beat params.hold_ms overrides)
+
+video:
+  width: 1920
+  height: 1080
+  fps: 30
+  concurrency: 3
+  crf: 18
+  captions: true
+
+paths:
+  ffmpeg: tools/bin/ffmpeg
+  ffprobe: tools/bin/ffprobe
+  build_dir: build
+
+theme_file: theme.yaml

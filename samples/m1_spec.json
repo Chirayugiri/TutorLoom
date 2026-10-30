@@ -1,0 +1,70 @@
+{
+  "title": "Activation functions",
+  "scenes": [
+    {
+      "id": "s01",
+      "template": "compare_cards",
+      "section_label": "2 Activation functions",
+      "subtitle": "1943 – 2010",
+      "title": "Four ways a neuron can respond",
+      "narration": "Every neuron adds up its inputs into a single number. Then it has to decide what to pass on. That decision is the activation function, and here are four classic choices. The step function is the oldest. Below zero, it outputs nothing. At zero or above, it fires a full one. All or nothing, like a light switch. The sigmoid smooths that switch into a gentle S. Watch the dot. As the input grows, the output glides from zero up toward one. Tanh is the same S shape, stretched so it runs from minus one to plus one, centered on zero. And ReLU is the simplest of all. Negative inputs become zero. Positive inputs pass straight through, unchanged.",
+      "pronounce": {"ReLU": "ray-loo", "Tanh": "tanch"},
+      "content": {
+        "x_range": [-3, 3],
+        "cards": [
+          {"name": "step", "label": "Step", "fn": "step", "symbol": "H", "formula": "H(x)=\\begin{cases}1 & x \\ge 0\\\\ 0 & x < 0\\end{cases}", "caption": "output: 0 or 1"},
+          {"name": "sigmoid", "label": "Sigmoid", "fn": "sigmoid", "symbol": "σ", "formula": "\\sigma(x)=\\dfrac{1}{1+e^{-x}}", "caption": "range (0, 1)"},
+          {"name": "tanh", "label": "Tanh", "fn": "tanh", "symbol": "tanh", "formula": "\\tanh(x)=\\dfrac{e^{x}-e^{-x}}{e^{x}+e^{-x}}", "caption": "range (−1, 1)"},
+          {"name": "relu", "label": "ReLU", "fn": "relu", "symbol": "ReLU", "formula": "\\mathrm{ReLU}(x)=\\max(0,\\,x)", "caption": "range [0, ∞)"}
+        ]
+      },
+      "beats": [
+        {"anchor": "The step function is the oldest", "action": "highlight", "target": "card:step", "duration_ms": 600},
+        {"anchor": "fires a full one", "action": "move_dot", "target": "dot:step", "duration_ms": 1600, "params": {"from": -2.5, "to": 2.5}},
+        {"anchor": "The sigmoid smooths", "action": "highlight", "target": "card:sigmoid", "duration_ms": 600},
+        {"anchor": "Watch the dot", "action": "move_dot", "target": "dot:sigmoid", "duration_ms": 3600, "params": {"from": -2.8, "to": 2.8}},
+        {"anchor": "Tanh is the same", "action": "highlight", "target": "card:tanh", "duration_ms": 600},
+        {"anchor": "from minus one to plus one", "action": "move_dot", "target": "dot:tanh", "duration_ms": 2600, "params": {"from": -2.8, "to": 2.8}},
+        {"anchor": "ReLU is the simplest", "action": "highlight", "target": "card:relu", "duration_ms": 600},
+        {"anchor": "Negative inputs become zero", "action": "move_dot", "target": "dot:relu", "duration_ms": 1500, "params": {"from": -2.8, "to": 0}},
+        {"anchor": "Positive inputs pass straight through", "action": "move_dot", "target": "dot:relu", "duration_ms": 1800, "params": {"from": 0, "to": 2.8}}
+      ]
+    },
+    {
+      "id": "s02",
+      "template": "code",
+      "section_label": "2 Activation functions",
+      "subtitle": "in code",
+      "title": "Same inputs, different answers",
+      "narration": "Let's look at real numbers. We take five inputs, from minus two up to two. Here's the sigmoid: one over one plus e to the minus x. And here's ReLU, which is just the max of zero and x. We run both on the same inputs, and print the results. Look at minus two. The sigmoid gives a small positive number, about zero point one two. But ReLU gives exactly zero. At zero, the sigmoid sits at one half, right in the middle. And at two, ReLU passes the two straight through, while the sigmoid is squeezed below one. Same inputs, very different answers.",
+      "pronounce": {"ReLU": "ray-loo"},
+      "content": {
+        "language": "python",
+        "filename": "activations.py",
+        "code": "import math\n\nxs = [-2.0, -0.5, 0.0, 0.5, 2.0]\n\ndef sigmoid(x):\n    return 1 / (1 + math.exp(-x))\n\ndef relu(x):\n    return max(0.0, x)\n\nsig = [round(sigmoid(x), 2) for x in xs]\nrel = [round(relu(x), 2) for x in xs]\nprint(\"sigmoid:\", sig)\nprint(\"relu:   \", rel)\n",
+        "chart": {
+          "title": "outputs for each input x",
+          "labels_var": "xs",
+          "series": [{"name": "sigmoid", "var": "sig"}, {"name": "relu", "var": "rel"}],
+          "caption": "values from the printed output above"
+        }
+      },
+      "beats": [
+        {"anchor": "five inputs", "action": "highlight", "target": "line:3", "duration_ms": 500},
+        {"anchor": "Here's the sigmoid", "action": "highlight", "target": "line:5", "duration_ms": 500},
+        {"anchor": "one over one plus", "action": "highlight", "target": "line:6", "duration_ms": 500},
+        {"anchor": "And here's ReLU", "action": "highlight", "target": "line:8", "duration_ms": 500},
+        {"anchor": "the max of zero", "action": "circle", "target": "token:max", "duration_ms": 500},
+        {"anchor": "We run both", "action": "highlight", "target": "line:11", "duration_ms": 500},
+        {"anchor": "print the results", "action": "reveal", "target": "panel:output", "duration_ms": 700},
+        {"anchor": "print the results", "action": "reveal", "target": "panel:chart", "duration_ms": 1200},
+        {"anchor": "Look at minus two", "action": "highlight", "target": "bar:-2.0", "duration_ms": 600},
+        {"anchor": "about zero point one two", "action": "highlight", "target": "output:1", "duration_ms": 500},
+        {"anchor": "ReLU gives exactly zero", "action": "highlight", "target": "output:2", "duration_ms": 500},
+        {"anchor": "At zero, the sigmoid", "action": "highlight", "target": "bar:0.0", "duration_ms": 600},
+        {"anchor": "at two, ReLU passes", "action": "highlight", "target": "bar:2.0", "duration_ms": 600},
+        {"anchor": "squeezed below one", "action": "highlight", "target": "series:sigmoid", "duration_ms": 600}
+      ]
+    }
+  ]
+}

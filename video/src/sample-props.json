@@ -1,0 +1,65 @@
+{
+ "scene": {
+  "id": "s00",
+  "template": "title",
+  "section_label": "",
+  "subtitle": "",
+  "title": "Preview",
+  "content": {},
+  "beats": [],
+  "duration_frames": 90,
+  "audio_offset_frames": 0,
+  "audio_file": "",
+  "words": []
+ },
+ "theme": {
+  "colors": {
+   "bg": "#0A0A0B",
+   "bg_raised": "#111113",
+   "card": "#131315",
+   "border": "#26262A",
+   "border_strong": "#3A3A40",
+   "text": "#F2F0EB",
+   "text_muted": "#9C9A94",
+   "text_faint": "#5E5D59",
+   "accent": "#FFB000",
+   "accent_soft": "rgba(255, 176, 0, 0.14)",
+   "grid": "#1E1E21",
+   "code_keyword": "#E9E6DF",
+   "code_text": "#C4C1BA",
+   "code_string": "#A9B4A2",
+   "code_number": "#D8C7A4",
+   "code_comment": "#64635F",
+   "code_function": "#DCD6CB"
+  },
+  "fonts": {
+   "serif": "Source Serif 4",
+   "sans": "Inter",
+   "mono": "JetBrains Mono"
+  },
+  "sizes": {
+   "title": 64,
+   "heading": 40,
+   "body": 30,
+   "label": 20,
+   "code": 27,
+   "radius": 18,
+   "border": 1.5,
+   "margin_x": 120
+  },
+  "motion": {
+   "damping": 200,
+   "stiffness": 120,
+   "mass": 1,
+   "dim_opacity": 0.28,
+   "focus_scale": 1.03,
+   "fade_frames": 10
+  }
+ },
+ "progress": {
+  "durations": [
+   90
+  ],
+  "index": 0
+ }
+}

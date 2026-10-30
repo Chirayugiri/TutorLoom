@@ -1,0 +1,42 @@
+# Secrets / local config
+.env
+.env.*
+!.env.example
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Node / Remotion
+video/node_modules/
+video/out/
+video/public/generated/
+.remotion/
+
+# Pipeline outputs (audio, renders, caches) — regenerate with `n2v`
+build/
+*.mp4
+*.wav
+*.srt
+!samples/**
+
+# Downloaded tools (fetched by tools/setup_ffmpeg.sh)
+tools/bin/
+tools/*.log
+
+# Model caches if pointed inside the repo
+models/
+.cache/
+
+# Editor / OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+.scratch/
